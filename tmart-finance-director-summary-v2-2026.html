@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-MART Finance &mdash; Director Summary 2026 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF5900;
+    --orange-light: #ff7a33;
+    --orange-dim: rgba(255,89,0,0.08);
+    --orange-dim2: rgba(255,89,0,0.04);
+    --brown: #411517;
+    --off-white: #F4EDE3;
+    --lime: #CFFF00;
+    --white: #FFFFFF;
+    --surface2: #FAF6F0;
+    --surface3: #EDE5D8;
+    --border: #E8DFD2;
+    --border-strong: #D6CABC;
+    --text: #2D1A1C;
+    --text-mid: #5a3f3f;
+    --text-muted: #8B6B6E;
+    --green: #2E7D32;
+    --green-bg: rgba(46,125,50,0.08);
+    --green-border: rgba(46,125,50,0.2);
+    --red: #C62828;
+    --shadow: 0 2px 12px rgba(65,21,23,0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .page-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid rgba(255,89,0,0.15);
+    padding: 5px 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 0.92;
+    letter-spacing: 3px;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+  .page-title span { color: var(--orange); }
+
+  .page-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .kpi-cell {
+    background: var(--white);
+    padding: 18px 14px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .kpi-cell:last-child { border-right: none; }
+
+  .kpi-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--orange);
+  }
+  .kpi-val.green { color: var(--green); }
+  .kpi-val.lime { color: var(--lime); }
+  .kpi-val.brown { color: var(--brown); }
+
+  .kpi-lbl {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* ── CARDS ── */
+  .card-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(65,21,23,0.1);
+  }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+
+  .card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--brown);
+    margin-bottom: 3px;
+  }
+
+  .card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .card .metric-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .metric-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .metric-pill.orange { background: var(--orange-dim); color: var(--orange); }
+  .metric-pill.green { background: var(--green-bg); color: var(--green); }
+
+  /* ── TOOL BUTTON ── */
+  .tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    font-weight: 600;
+  }
+  .tool-btn:hover { transform: translateY(-1px); }
+  .tool-btn.primary {
+    background: var(--orange);
+    color: #fff;
+  }
+  .tool-btn.primary:hover { background: var(--orange-light); }
+  .tool-btn.secondary {
+    background: var(--orange-dim);
+    color: var(--orange);
+    border: 1px solid rgba(255,89,0,0.2);
+  }
+  .tool-btn.secondary:hover { background: rgba(255,89,0,0.15); }
+
+  /* ── ZERO HERO ── */
+  .big-zero-container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 22px;
+  }
+
+  .big-zero {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 140px;
+    line-height: 0.8;
+    color: var(--orange);
+    letter-spacing: -4px;
+    text-shadow: 0 4px 30px rgba(255,89,0,0.15);
+  }
+
+  .big-zero-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 3px;
+    color: var(--brown);
+    line-height: 1;
+  }
+
+  .big-zero-text p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+    max-width: 520px;
+  }
+
+  /* ── GROWTH PILLS ── */
+  .growth-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .growth-pill {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 14px 18px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    transition: transform 0.25s ease;
+  }
+  .growth-pill:hover { transform: translateY(-2px); }
+
+  .growth-pill .pill-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .growth-pill .pill-nums {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--brown);
+    line-height: 1;
+  }
+
+  .growth-pill .pill-change {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 600;
+    margin-top: 1px;
+  }
+
+  .growth-pill.zero-hire {
+    border-color: var(--green-border);
+    background: var(--green-bg);
+  }
+  .growth-pill.zero-hire .pill-nums { color: var(--green); }
+  .growth-pill.zero-hire .pill-change { color: var(--green); }
+
+  /* ── SAVINGS STRIP ── */
+  .savings-strip {
+    background: var(--brown);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+  }
+
+  .savings-strip .total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .savings-strip .total-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .savings-items {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .savings-item {
+    text-align: center;
+  }
+
+  .savings-item .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--lime);
+    line-height: 1;
+  }
+
+  .savings-item .lbl {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1px;
+  }
+
+  /* ── DASHBOARD CARDS ── */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+
+  .dash-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease;
+  }
+  .dash-card:hover { transform: translateY(-2px); }
+
+  .dash-card .dash-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+
+  .dash-card h5 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--brown);
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+
+  .dash-card p {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .dash-card.highlight {
+    background: var(--orange-dim);
+    border-color: rgba(255,89,0,0.25);
+  }
+
+  /* ── IFRAME ── */
+  .iframe-container {
+    border: 2px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(65,21,23,0.1);
+    position: relative;
+    background: var(--white);
+  }
+
+  .iframe-container iframe {
+    width: 100%;
+    border: none;
+    display: block;
+  }
+
+  .iframe-header {
+    background: var(--brown);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .iframe-header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  .iframe-header-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(255,89,0,0.15);
+    border: 1px solid rgba(255,89,0,0.3);
+    padding: 3px 12px;
+    border-radius: 4px;
+  }
+
+  /* ── EMPOWERMENT ── */
+  .emp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .emp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.25s ease;
+  }
+  .emp-card:hover { transform: translateY(-2px); }
+
+  .emp-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+
+  .emp-card p {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* ── CLOSING ── */
+  .closing-statement {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .closing-statement p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    color: var(--text-mid);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .closing-statement p strong {
+    color: var(--orange);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* ── TIME CURRENCY TABLE ── */
+  .time-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .time-table thead th {
+    background: var(--brown);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .time-table tbody tr {
+    transition: background 0.15s;
+  }
+  .time-table tbody tr:hover {
+    background: var(--orange-dim2);
+  }
+  .time-table tbody td {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+  .time-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .time-table .before-col {
+    color: var(--red);
+    font-weight: 500;
+  }
+  .time-table .after-col {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .time-table .hours-col {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--orange);
+    text-align: center;
+  }
+  .time-table tfoot td {
+    background: var(--brown);
+    color: #fff;
+    padding: 14px 16px;
+    font-weight: 600;
+    border-bottom: none;
+  }
+  .time-table tfoot .hours-col {
+    color: var(--lime);
+    font-size: 28px;
+  }
+
+  /* ── CHART SECTION ── */
+  .chart-container {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .chart-container svg { width: 100%; height: auto; }
+  .chart-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .chart-legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  /* ── PAGE NUMBERING ── */
+  .page-num {
+    position: absolute;
+    bottom: 20px;
+    right: 36px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 56px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  /* ── PRINT ── */
+  @media print {
+    @page { size: landscape; margin: 0; }
+    body { background: #fff; }
+    .page {
+      height: 100vh;
+      min-height: 0;
+      page-break-after: always;
+      page-break-inside: avoid;
+      padding: 28px 40px;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .iframe-container { display: none; }
+    .card:hover, .dash-card:hover, .growth-pill:hover, .emp-card:hover { transform: none; }
+    .tool-btn { border: 1px solid var(--border); }
+  }
+
+  @media (max-width: 1200px) {
+    .page { padding: 28px 32px; }
+    .dash-grid { grid-template-columns: repeat(3, 1fr); }
+    .emp-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PAGE 1: SCALE & EFFICIENCY + OPERATIONS TIMELINE       -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="page" id="page-1">
+  <div style="position:absolute;top:-80px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.07),transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-120px;left:-120px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(207,255,0,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <!-- Hero Row: Title + Zero -->
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;" class="reveal">
+    <div>
+      <div class="page-tag">T-Mart Finance &mdash; 2026</div>
+      <div class="page-title" style="font-size:clamp(56px,7vw,88px);">SCALE WITHOUT<br><span>HEADCOUNT</span></div>
+    </div>
+    <div class="big-zero-container" style="margin-bottom:0; gap:20px;">
+      <div class="big-zero" data-counter-target="0" data-counter-prefix="" data-counter-static="true" style="font-size:120px;">0</div>
+      <div class="big-zero-text">
+        <h3 style="font-size:36px;">NEW HIRES <span style="color:var(--orange);">ADDED</span></h3>
+        <p style="font-size:12px;">60% store growth, 50+ new suppliers, +50% purchases &mdash; same team.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Growth Pills -->
+  <div class="growth-pills reveal" style="margin-bottom:14px;">
+    <div class="growth-pill">
+      <div class="pill-label">Stores</div>
+      <div class="pill-nums">35 &rarr; 56</div>
+      <div class="pill-change" data-counter-target="60" data-counter-suffix="% &uarr;">+60% &uarr;</div>
+    </div>
+    <div class="growth-pill">
+      <div class="pill-label">Suppliers</div>
+      <div class="pill-nums">250+ &rarr; 350+</div>
+      <div class="pill-change" data-counter-target="40" data-counter-suffix="% &uarr;">+40% &uarr;</div>
+    </div>
+    <div class="growth-pill">
+      <div class="pill-label">Purchase Volume</div>
+      <div class="pill-nums" data-counter-target="50" data-counter-prefix="+" data-counter-suffix="%">+50%</div>
+      <div class="pill-change">YoY Growth</div>
+    </div>
+    <div class="growth-pill">
+      <div class="pill-label">2026 Jan&ndash;Apr</div>
+      <div class="pill-nums">AED <span data-counter-target="529" data-counter-suffix="M">529M</span></div>
+      <div class="pill-change">Total Purchases</div>
+    </div>
+    <div class="growth-pill zero-hire">
+      <div class="pill-label">New Headcount</div>
+      <div class="pill-nums">ZERO</div>
+      <div class="pill-change">Unchanged &#10003;</div>
+    </div>
+  </div>
+
+  <!-- Expansion & Workflows — centered -->
+  <div class="reveal" style="display:flex; justify-content:center; margin-bottom:14px;">
+    <div style="width:100%; max-width:700px;">
+      <div class="page-tag" style="text-align:center; display:block;">Expansion &amp; Workflows</div>
+      <div class="kpi-strip" style="grid-template-columns: repeat(3,1fr);">
+        <div class="kpi-cell">
+          <div class="kpi-val" data-counter-target="58">58</div>
+          <div class="kpi-lbl">Stores<br>Operational</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-val brown" data-counter-target="79">79</div>
+          <div class="kpi-lbl">2026 Budget<br>Target</div>
+        </div>
+        <div class="kpi-cell" style="background:var(--brown);">
+          <div class="kpi-val lime" data-counter-target="734" data-counter-prefix="~">~734</div>
+          <div class="kpi-lbl" style="color:rgba(255,255,255,0.6);">2026 Kissflow<br>Projected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operations Timeline Chart (compact) -->
+  <div class="reveal">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+      <div class="page-tag" style="margin-bottom:0;">Operations Timeline &mdash; Q1 2023 to Q1 2026</div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div style="text-align:center; padding:6px 14px; background:var(--white); border:1px solid var(--border-strong); border-radius:6px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--orange); line-height:1;" data-counter-target="88" data-counter-prefix="+" data-counter-suffix="%">+88%</div>
+          <div style="font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Purchase Growth</div>
+        </div>
+        <div style="text-align:center; padding:6px 14px; background:var(--white); border:1px solid var(--border-strong); border-radius:6px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--green); line-height:1;" data-counter-target="350" data-counter-suffix="+">350+</div>
+          <div style="font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Active Suppliers</div>
+        </div>
+        <div style="text-align:center; padding:6px 14px; background:var(--white); border:1px solid var(--border-strong); border-radius:6px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--brown); line-height:1;">AED <span data-counter-target="529" data-counter-suffix="M">529M</span></div>
+          <div style="font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">2026 Jan&ndash;Apr</div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container" style="padding:16px;">
+      <svg id="ops-chart" viewBox="0 0 1100 280" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="chart-legend" style="margin-top:6px;">
+        <div class="chart-legend-item">
+          <div class="chart-legend-dot" style="background:var(--orange);"></div>
+          PO Amount (AED M)
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-dot" style="background:var(--green);"></div>
+          Active Suppliers
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; Director Summary</div>
+  <div class="page-num">01 / 05</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PAGE 2: AUTOMATION, AI & DASHBOARDS                    -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="page" id="page-2">
+  <div style="position:absolute;bottom:-60px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <!-- Header row -->
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;" class="reveal">
+    <div>
+      <div class="page-tag">The Innovation Engine</div>
+      <div class="page-title">AUTOMATION,<br><span>AI &amp; DASHBOARDS</span></div>
+    </div>
+    <div style="text-align:right; flex-shrink:0; margin-left:24px;">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--orange); line-height:0.85; text-shadow:0 3px 20px rgba(255,89,0,0.12);" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Saved Every Month</div>
+      <div style="margin-top:6px; display:flex; gap:6px; justify-content:flex-end;">
+        <span class="metric-pill orange">15+ Automations</span>
+        <span class="metric-pill green">10 Dashboards</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automations Grid — 2 rows x 4 cols -->
+  <div class="card-grid reveal" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 12px;">
+    <div class="card">
+      <div class="card-tag">New in 2026</div>
+      <h4>Invoice Matching</h4>
+      <p>Auto-reads &amp; validates store PDF invoices. ~70% of all POS transactions automated.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">151K&rarr;45K</span>
+        <span class="metric-pill green">&darr;70%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Store Ops</div>
+      <h4>TCN Tool</h4>
+      <p>Credit note tool across 56 stores. Supplier validation, duplicate blocking, tax compliance.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">159K TCNs</span>
+        <span class="metric-pill green">0 Errors</span>
+      </div>
+      <div class="metric-row" style="margin-top:6px;">
+        <a href="https://sites.google.com/talabat.com/tcn-tool/home" target="_blank" class="tool-btn primary">&#9654; TCN Tool</a>
+        <a href="https://script.google.com/a/macros/talabat.com/s/AKfycby157IUKyFHvjhyGhaIg9OyaUtJKmO4lcDH6nGfFYWUvqxoSfm7uuHh2zb7JK3I7N9q/exec" target="_blank" class="tool-btn secondary">GRV Dashboard</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Built In-House</div>
+      <h4>Supplier Recon</h4>
+      <p>Single tool replacing dozens of recon files. Auto-detects SOA formats, one-click matching.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">300+ Formats</span>
+        <span class="metric-pill green">1 Tool</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Enhanced</div>
+      <h4>Rebate SRM</h4>
+      <p>Supplier-level view with purchases, returns &amp; adjustments all in one place.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">3hrs &rarr; 20min</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Automated</div>
+      <h4>Inventory Recon</h4>
+      <p>Auto-identifies purchases vs returns. Zero manual classification errors.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">2-3hrs &rarr; 15min</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Integration</div>
+      <h4>H2H &amp; PEMO</h4>
+      <p>Host-to-Host payments direct from MSD. PEMO eliminated cash handling entirely.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">MSD&rarr;Bank</span>
+        <span class="metric-pill green">Cashless</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Proactive</div>
+      <h4>Pending GRV Tracking</h4>
+      <p>Automated weekly GRV reports. Pending rate held at 0.26%, down 58.5% YoY.</p>
+      <div class="metric-row">
+        <span class="metric-pill green">&darr;58.5%</span>
+        <span class="metric-pill green">0.26%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Revenue</div>
+      <h4>NMR Booking</h4>
+      <p>Shifted invoice booking to same month of service &mdash; faster supplier confirmations.</p>
+      <div class="metric-row">
+        <span class="metric-pill orange">Same-Month</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Dashboards Grid -->
+  <div class="reveal" style="margin-bottom:10px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+      <div class="page-tag" style="margin-bottom:0;">AI-Powered Dashboards &middot; 100% Team Adoption</div>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="dash-tag">Operations</div>
+        <h5>Shrinkage Dashboard</h5>
+        <p>Loss patterns &amp; outlier flagging across all stores.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Purchase</div>
+        <h5>PO Dashboard</h5>
+        <p>Store-level purchasing trends &amp; daily movement.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Finance Ops</div>
+        <h5>Invoice Match Performance</h5>
+        <p>Real-time matching rates &amp; discrepancy flags.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Accounts Payable</div>
+        <h5>Supplier Balances</h5>
+        <p>Outstanding liabilities &amp; payment priorities.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Treasury</div>
+        <h5>Bank Transactions</h5>
+        <p>Cash inflow, outflow &amp; net across all accounts.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Leasing</div>
+        <h5>Lease Breakdown</h5>
+        <p>Monthly liability, cost breakdown &amp; contracts.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Revenue</div>
+        <h5>NMR &amp; Rebate</h5>
+        <p>2026 NMR/rebate trends &amp; MoM comparisons.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Stock</div>
+        <h5>Inventory Movement</h5>
+        <p>Movement trends &amp; MoM comparison across stores.</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-tag">Expansion</div>
+        <h5>Store Count</h5>
+        <p>Live store locations &amp; expansion tracking.</p>
+      </div>
+      <div class="dash-card highlight">
+        <div class="dash-tag" style="color:var(--orange);">Finance</div>
+        <h5>Balance Sheet &darr;</h5>
+        <p>Interactive financial statements &mdash; see Page 3.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Savings Strip -->
+  <div class="savings-strip reveal">
+    <div>
+      <div class="total" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+      <div class="total-label">Saved Monthly</div>
+    </div>
+    <div class="savings-items">
+      <div class="savings-item">
+        <div class="val" data-counter-target="88" data-counter-prefix="~" data-counter-suffix="h">~88h</div>
+        <div class="lbl">Invoice Match</div>
+      </div>
+      <div class="savings-item">
+        <div class="val" data-counter-target="12" data-counter-prefix="~" data-counter-suffix="h">~12h</div>
+        <div class="lbl">TCN Tool</div>
+      </div>
+      <div class="savings-item">
+        <div class="val" data-counter-target="11" data-counter-prefix="~" data-counter-suffix="h">~11h</div>
+        <div class="lbl">Rebate SRM</div>
+      </div>
+      <div class="savings-item">
+        <div class="val" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</div>
+        <div class="lbl">Supplier Recon</div>
+      </div>
+      <div class="savings-item">
+        <div class="val" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</div>
+        <div class="lbl">Pending GRV</div>
+      </div>
+      <div class="savings-item">
+        <div class="val" data-counter-target="3" data-counter-prefix="~" data-counter-suffix="h">~3h</div>
+        <div class="lbl">Inventory</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; Director Summary</div>
+  <div class="page-num">02 / 05</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PAGE 3: BALANCE SHEET DASHBOARD                        -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="page" id="page-3" style="padding-bottom:60px;">
+  <div style="position:absolute;top:-60px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <!-- Header -->
+  <div class="reveal" style="margin-bottom:14px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <div class="page-tag">Interactive Financial Statements</div>
+        <div class="page-title" style="font-size:clamp(48px,6vw,76px);">BALANCE SHEET<br><span>DASHBOARD</span></div>
+      </div>
+      <div style="text-align:right;">
+        <p style="font-size:12px; color:var(--text-muted); line-height:1.5; max-width:360px;">Dynamic financial statements dashboard with interactive balance sheet, income statement, equity, cash flow &amp; key ratio analysis &mdash; built to replace static Excel reports.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Dashboard -->
+  <div class="iframe-container reveal" style="flex:1;">
+    <div class="iframe-header">
+      <div class="iframe-header-title">DMART FINANCE UAE &mdash; Financial Statements</div>
+      <div class="iframe-header-badge">Built with AI</div>
+    </div>
+    <iframe src="Financial_Statements.html" style="height: calc(100vh - 260px); min-height:400px;" loading="lazy"></iframe>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; Director Summary</div>
+  <div class="page-num">03 / 05</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PAGE 4: TIME IS THE NEW CURRENCY                       -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="page" id="page-4">
+  <div style="position:absolute;top:-100px;left:-100px;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(207,255,0,0.06),transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <div class="reveal" style="margin-bottom:16px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <div class="page-tag">The ROI of Automation</div>
+        <div class="page-title" style="font-size:clamp(52px,6.5vw,82px);">TIME IS THE<br><span>NEW CURRENCY</span></div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:80px; color:var(--orange); line-height:0.85; text-shadow:0 4px 30px rgba(255,89,0,0.15);" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+        <div style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Reclaimed Every Month</div>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">That&rsquo;s <strong style="color:var(--orange); font-size:14px;">3+ weeks</strong> of full-time work &mdash; redirected to analysis &amp; strategy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <table class="time-table">
+      <thead>
+        <tr>
+          <th style="width:22%;">Process</th>
+          <th style="width:22%;">Before</th>
+          <th style="width:22%;">After</th>
+          <th style="width:18%;">Impact</th>
+          <th style="width:16%; text-align:center;">Hours Saved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Invoice Matching</strong></td>
+          <td class="before-col">4 hrs/day manual processing</td>
+          <td class="after-col">Fully automated &mdash; 70% POS</td>
+          <td>151K &rarr; 45K documents</td>
+          <td class="hours-col" data-counter-target="88" data-counter-prefix="~" data-counter-suffix="h">~88h</td>
+        </tr>
+        <tr>
+          <td><strong>TCN Tool</strong></td>
+          <td class="before-col">43K documents had issues</td>
+          <td class="after-col">0% error rate</td>
+          <td>159K TCNs processed</td>
+          <td class="hours-col" data-counter-target="12" data-counter-prefix="~" data-counter-suffix="h">~12h</td>
+        </tr>
+        <tr>
+          <td><strong>Rebate SRM</strong></td>
+          <td class="before-col">3 hours per reconciliation</td>
+          <td class="after-col">20 minutes</td>
+          <td>Purchases + returns + adj</td>
+          <td class="hours-col" data-counter-target="11" data-counter-prefix="~" data-counter-suffix="h">~11h</td>
+        </tr>
+        <tr>
+          <td><strong>Supplier Recon</strong></td>
+          <td class="before-col">1 file per supplier</td>
+          <td class="after-col">1 tool, all suppliers</td>
+          <td>300+ SOA formats</td>
+          <td class="hours-col" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</td>
+        </tr>
+        <tr>
+          <td><strong>Pending GRV</strong></td>
+          <td class="before-col">Manual follow-ups</td>
+          <td class="after-col">Auto weekly report</td>
+          <td>&darr;58.5% YoY</td>
+          <td class="hours-col" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</td>
+        </tr>
+        <tr>
+          <td><strong>PEMO Payments</strong></td>
+          <td class="before-col">Cash handling at stores</td>
+          <td class="after-col">100% digital &amp; cashless</td>
+          <td>Zero cash risk</td>
+          <td class="hours-col" data-counter-target="4" data-counter-prefix="~" data-counter-suffix="h">~4h</td>
+        </tr>
+        <tr>
+          <td><strong>Inventory Recon</strong></td>
+          <td class="before-col">2&ndash;3 hours per recon</td>
+          <td class="after-col">15 minutes</td>
+          <td>Auto PO vs returns</td>
+          <td class="hours-col" data-counter-target="3" data-counter-prefix="~" data-counter-suffix="h">~3h</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px;">Total Monthly Time Reclaimed</td>
+          <td class="hours-col" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h" style="text-align:center;">~130h</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; Director Summary</div>
+  <div class="page-num">04 / 05</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PAGE 5: PEOPLE & CULTURE + CLOSING                     -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="page" id="page-5">
+  <div style="position:absolute;top:-80px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.06),transparent 70%);pointer-events:none;"></div>
+
+  <div class="reveal" style="margin-bottom:16px;">
+    <div class="page-tag">The Team Behind the Numbers</div>
+    <div class="page-title" style="font-size:clamp(52px,6.5vw,82px);">PEOPLE &amp;<br><span>CULTURE</span></div>
+    <p style="font-size:14px; color:var(--text-muted); max-width:600px; margin-top:8px; line-height:1.6;">Every automation, every dashboard, every improvement &mdash; built by the same team, with zero additional headcount. This is what happens when you invest in capability over capacity.</p>
+  </div>
+
+  <!-- People & Culture -->
+  <div class="reveal" style="margin-bottom:24px;">
+    <div class="emp-grid">
+      <div class="emp-card">
+        <div style="font-size:24px; color:var(--orange); margin-bottom:8px;">&#9670;</div>
+        <h4>100% AI Adoption</h4>
+        <p>Every team member has Claude access and actively uses AI in daily workflows &mdash; not a pilot, it&rsquo;s how we work.</p>
+      </div>
+      <div class="emp-card">
+        <div style="font-size:24px; color:var(--orange); margin-bottom:8px;">&#9670;</div>
+        <h4>Automation-First</h4>
+        <p>The team builds tools, not just uses them. Every repetitive process is a candidate for elimination.</p>
+      </div>
+      <div class="emp-card">
+        <div style="font-size:24px; color:var(--orange); margin-bottom:8px;">&#9670;</div>
+        <h4>More Tools, Less Burden</h4>
+        <p>15+ automations and 10 dashboards freeing capacity for analysis and strategic work.</p>
+      </div>
+      <div class="emp-card">
+        <div style="font-size:24px; color:var(--orange); margin-bottom:8px;">&#9670;</div>
+        <h4>Growth Through Challenge</h4>
+        <p>70% business growth absorbed with zero hires &mdash; scaling by capability, not headcount.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary strip -->
+  <div class="reveal" style="margin-bottom:24px;">
+    <div style="display:grid; grid-template-columns: repeat(5,1fr); gap:12px;">
+      <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--orange); line-height:1;" data-counter-target="0" data-counter-static="true">0</div>
+        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">New Hires</div>
+      </div>
+      <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--lime); line-height:1;" data-counter-target="15" data-counter-suffix="+">15+</div>
+        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">Automations</div>
+      </div>
+      <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--lime); line-height:1;" data-counter-target="10">10</div>
+        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">Dashboards</div>
+      </div>
+      <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--orange); line-height:1;" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">Saved Monthly</div>
+      </div>
+      <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--lime); line-height:1;" data-counter-target="100" data-counter-suffix="%">100%</div>
+        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">AI Adoption</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-statement reveal">
+    <p>&ldquo;This is what happens when you <strong>invest in people and systems</strong> &mdash; the results speak for themselves.&rdquo;</p>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; Director Summary</div>
+  <div class="page-num">05 / 05</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS: Reveal, Counter Animations, Operations Chart     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  /* ── Scroll Reveal ── */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el) { revealObserver.observe(el); });
+
+  /* ── Counter Animations ── */
+  var counters = document.querySelectorAll('[data-counter-target]');
+  var counterObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  counters.forEach(function(el) { counterObserver.observe(el); });
+
+  function animateCounter(el) {
+    var target = parseFloat(el.dataset.counterTarget);
+    var prefix = el.dataset.counterPrefix || '';
+    var suffix = el.dataset.counterSuffix || '';
+    var decimals = parseInt(el.dataset.counterDecimals) || 0;
+    var isStatic = el.dataset.counterStatic === 'true';
+    var duration = 1400;
+    var start = performance.now();
+
+    if (isStatic) {
+      el.style.transform = 'scale(1.15)';
+      el.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      setTimeout(function() { el.style.transform = 'scale(1)'; }, 500);
+      return;
+    }
+
+    function ease(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function tick(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = ease(progress);
+      var current = eased * target;
+
+      if (decimals > 0) {
+        el.textContent = prefix + current.toFixed(decimals) + suffix;
+      } else {
+        el.textContent = prefix + Math.round(current) + suffix;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  /* ── Operations Timeline Chart ── */
+  var chartEl = document.getElementById('ops-chart');
+  if (chartEl) {
+    var labels = ['Q1\'23','Q2\'23','Q3\'23','Q4\'23','Q1\'24','Q2\'24','Q3\'24','Q4\'24','Q1\'25','Q2\'25','Q3\'25','Q4\'25','Q1\'26'];
+    var poAmt  = [45.21, 51.75, 56.84, 60.40, 64.82, 65.10, 71.91, 80.99, 87.24, 101.32, 112.56, 113.42, 132.15];
+    var suppliers = [181, 187, 196, 216, 216, 226, 226, 227, 250, 264, 283, 300, 350];
+
+    var W = 1100, H = 280, T = 30, B = 40, L = 55, R = 55;
+    var plotW = W - L - R, plotH = H - T - B;
+    var n = labels.length;
+
+    var poMin = 0, poMax = 150;
+    var supMin = 100, supMax = 400;
+
+    function xPos(i) { return L + (i / (n - 1)) * plotW; }
+    function yPo(v) { return T + plotH - ((v - poMin) / (poMax - poMin)) * plotH; }
+    function ySup(v) { return T + plotH - ((v - supMin) / (supMax - supMin)) * plotH; }
+
+    var svg = '';
+
+    // Grid lines
+    var poTicks = [0, 30, 60, 90, 120, 150];
+    var supTicks = [100, 150, 200, 250, 300, 350, 400];
+    poTicks.forEach(function(v) {
+      var y = yPo(v);
+      svg += '<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#E8DFD2" stroke-width="1" stroke-dasharray="4,4"/>';
+      svg += '<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" fill="#8B6B6E" font-family="DM Mono,monospace" font-size="9">'+v+'</text>';
+    });
+    supTicks.forEach(function(v) {
+      var y = ySup(v);
+      svg += '<text x="'+(W-R+8)+'" y="'+(y+4)+'" text-anchor="start" fill="#2E7D32" font-family="DM Mono,monospace" font-size="9">'+v+'</text>';
+    });
+
+    // X-axis labels
+    labels.forEach(function(lbl, i) {
+      svg += '<text x="'+xPos(i)+'" y="'+(H-8)+'" text-anchor="middle" fill="#8B6B6E" font-family="DM Mono,monospace" font-size="9">'+lbl+'</text>';
+    });
+
+    // Y-axis titles
+    svg += '<text x="12" y="'+(T + plotH/2)+'" text-anchor="middle" fill="#FF5900" font-family="DM Mono,monospace" font-size="9" transform="rotate(-90,12,'+(T + plotH/2)+')">PO Amount (AED M)</text>';
+    svg += '<text x="'+(W-8)+'" y="'+(T + plotH/2)+'" text-anchor="middle" fill="#2E7D32" font-family="DM Mono,monospace" font-size="9" transform="rotate(90,'+(W-8)+','+(T + plotH/2)+')">Suppliers</text>';
+
+    // Year dividers
+    [4, 8, 12].forEach(function(i) {
+      if (i < n) {
+        svg += '<line x1="'+xPos(i)+'" y1="'+T+'" x2="'+xPos(i)+'" y2="'+(H-B)+'" stroke="#D6CABC" stroke-width="1" stroke-dasharray="6,3"/>';
+      }
+    });
+    // Year labels
+    svg += '<text x="'+((xPos(0)+xPos(3))/2)+'" y="'+(T-8)+'" text-anchor="middle" fill="#8B6B6E" font-family="Bebas Neue,sans-serif" font-size="14" letter-spacing="2">2023</text>';
+    svg += '<text x="'+((xPos(4)+xPos(7))/2)+'" y="'+(T-8)+'" text-anchor="middle" fill="#8B6B6E" font-family="Bebas Neue,sans-serif" font-size="14" letter-spacing="2">2024</text>';
+    svg += '<text x="'+((xPos(8)+xPos(11))/2)+'" y="'+(T-8)+'" text-anchor="middle" fill="#8B6B6E" font-family="Bebas Neue,sans-serif" font-size="14" letter-spacing="2">2025</text>';
+    svg += '<text x="'+xPos(12)+'" y="'+(T-8)+'" text-anchor="middle" fill="#FF5900" font-family="Bebas Neue,sans-serif" font-size="14" letter-spacing="2" font-weight="bold">2026</text>';
+
+    // PO Amount area + line
+    var poPath = '';
+    var poArea = 'M'+xPos(0)+','+yPo(poAmt[0]);
+    poAmt.forEach(function(v, i) {
+      if (i === 0) { poPath += 'M'+xPos(i)+','+yPo(v); }
+      else { poPath += ' L'+xPos(i)+','+yPo(v); }
+      poArea += ' L'+xPos(i)+','+yPo(v);
+    });
+    poArea += ' L'+xPos(n-1)+','+(H-B)+' L'+xPos(0)+','+(H-B)+' Z';
+    svg += '<path d="'+poArea+'" fill="url(#poGrad)" opacity="0.3"/>';
+    svg += '<path d="'+poPath+'" fill="none" stroke="#FF5900" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+
+    // Suppliers area + line
+    var supPath = '';
+    var supArea = 'M'+xPos(0)+','+ySup(suppliers[0]);
+    suppliers.forEach(function(v, i) {
+      if (i === 0) { supPath += 'M'+xPos(i)+','+ySup(v); }
+      else { supPath += ' L'+xPos(i)+','+ySup(v); }
+      supArea += ' L'+xPos(i)+','+ySup(v);
+    });
+    supArea += ' L'+xPos(n-1)+','+(H-B)+' L'+xPos(0)+','+(H-B)+' Z';
+    svg += '<path d="'+supArea+'" fill="url(#supGrad)" opacity="0.2"/>';
+    svg += '<path d="'+supPath+'" fill="none" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+
+    // Dots + value labels for key points
+    poAmt.forEach(function(v, i) {
+      svg += '<circle cx="'+xPos(i)+'" cy="'+yPo(v)+'" r="4" fill="#FF5900" stroke="#fff" stroke-width="2"/>';
+      if (i === 0 || i === n-1 || i % 4 === 0) {
+        svg += '<text x="'+xPos(i)+'" y="'+(yPo(v)-10)+'" text-anchor="middle" fill="#FF5900" font-family="DM Mono,monospace" font-size="9" font-weight="600">'+v.toFixed(1)+'</text>';
+      }
+    });
+    suppliers.forEach(function(v, i) {
+      svg += '<circle cx="'+xPos(i)+'" cy="'+ySup(v)+'" r="4" fill="#2E7D32" stroke="#fff" stroke-width="2"/>';
+      if (i === 0 || i === n-1 || i % 4 === 0) {
+        svg += '<text x="'+xPos(i)+'" y="'+(ySup(v)-10)+'" text-anchor="middle" fill="#2E7D32" font-family="DM Mono,monospace" font-size="9" font-weight="600">'+v+'</text>';
+      }
+    });
+
+    // Gradients
+    var defs = '<defs>';
+    defs += '<linearGradient id="poGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5900" stop-opacity="0.4"/><stop offset="100%" stop-color="#FF5900" stop-opacity="0.02"/></linearGradient>';
+    defs += '<linearGradient id="supGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E7D32" stop-opacity="0.3"/><stop offset="100%" stop-color="#2E7D32" stop-opacity="0.02"/></linearGradient>';
+    defs += '</defs>';
+
+    chartEl.innerHTML = defs + svg;
+  }
+})();
+</script>
+
+</body>
+</html>
