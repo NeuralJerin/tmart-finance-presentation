@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-MART Finance &mdash; NMR IFRS 15 Compliance &amp; Process Enhancements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF5900;
+    --orange-light: #ff7a33;
+    --orange-dim: rgba(255,89,0,0.08);
+    --orange-dim2: rgba(255,89,0,0.04);
+    --brown: #411517;
+    --off-white: #F4EDE3;
+    --lime: #CFFF00;
+    --white: #FFFFFF;
+    --surface2: #FAF6F0;
+    --surface3: #EDE5D8;
+    --border: #E8DFD2;
+    --border-strong: #D6CABC;
+    --text: #2D1A1C;
+    --text-mid: #5a3f3f;
+    --text-muted: #8B6B6E;
+    --green: #2E7D32;
+    --green-bg: rgba(46,125,50,0.08);
+    --green-border: rgba(46,125,50,0.2);
+    --red: #C62828;
+    --shadow: 0 2px 12px rgba(65,21,23,0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .page-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid rgba(255,89,0,0.15);
+    padding: 5px 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 0.92;
+    letter-spacing: 3px;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+  .page-title span { color: var(--orange); }
+
+  /* Compliance Grid */
+  .compliance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .comp-panel {
+    background: var(--white);
+    padding: 24px 28px;
+  }
+  .comp-panel:first-child {
+    border-right: 1px solid var(--border);
+  }
+  .comp-panel h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .comp-panel.challenge h4 { color: var(--red); }
+  .comp-panel.fix h4 { color: var(--green); }
+  .comp-panel ul { list-style: none; }
+  .comp-panel ul li {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .comp-panel ul li:last-child { border-bottom: none; }
+  .comp-panel.challenge ul li::before { content: '\2715'; color: var(--red); flex-shrink: 0; font-weight: 700; }
+  .comp-panel.fix ul li::before { content: '\2713'; color: var(--green); flex-shrink: 0; font-weight: 700; }
+  .comp-panel ul li strong { color: var(--text); }
+
+  /* Enhancement Grid */
+  .enhancement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .enh-card {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .enh-card:hover { transform: translateY(-2px); }
+  .enh-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+  }
+  .enh-card .enh-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .enh-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+  .enh-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .enh-card .before-after {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .enh-card .ba-item { flex: 1; }
+  .enh-card .ba-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .enh-card .ba-label.before { color: var(--red); }
+  .enh-card .ba-label.after { color: var(--green); }
+  .enh-card .ba-value {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .page-num {
+    position: absolute;
+    bottom: 20px;
+    right: 36px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 56px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  @media print {
+    @page { size: landscape; margin: 0; }
+    body { background: #fff; }
+    .page {
+      height: 100vh;
+      min-height: 0;
+      page-break-after: always;
+      page-break-inside: avoid;
+      padding: 28px 40px;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .enh-card:hover { transform: none; }
+  }
+
+  @media (max-width: 1200px) {
+    .page { padding: 28px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page" id="page-1">
+  <div style="position:absolute;top:-80px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.05),transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-100px;left:-80px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(207,255,0,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <div class="reveal" style="margin-bottom:16px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <div class="page-tag">Regulatory &amp; Process Excellence</div>
+        <div class="page-title" style="font-size:clamp(48px,6vw,76px);">NMR IFRS 15<br><span>COMPLIANCE</span></div>
+      </div>
+      <div style="text-align:right; max-width:360px;">
+        <p style="font-size:12px; color:var(--text-muted); line-height:1.5;">Proactively fixing revenue recognition gaps to meet international accounting standards &mdash; before any audit finding.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance Block: Challenge vs Fix -->
+  <div class="compliance-grid reveal" style="margin-bottom:24px;">
+    <div class="comp-panel challenge">
+      <h4>The Challenge</h4>
+      <ul>
+        <li>Recipe costs <strong>incorrectly classified</strong> under COGS</li>
+        <li>NMR <strong>non-compliant</strong> with IFRS 15 standards</li>
+        <li>Revenue recognition <strong>misaligned</strong> with performance obligations</li>
+        <li><strong>Audit risk flagged</strong> during quarterly review</li>
+      </ul>
+    </div>
+    <div class="comp-panel fix">
+      <h4>The Fix</h4>
+      <ul>
+        <li>Reallocated recipe costs to <strong>Revenue deductions</strong></li>
+        <li>Built <strong>automated IFRS 15</strong> allocation model</li>
+        <li>Created <strong>validation checks</strong> for ongoing compliance</li>
+        <li><strong>Monthly reconciliation</strong> between POS and GL established</li>
+        <li>Documented methodology <strong>ready for auditor sign-off</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Process Enhancements -->
+  <div class="reveal" style="margin-bottom:12px;">
+    <div class="page-tag">H1 2026 Process Enhancements</div>
+  </div>
+
+  <div class="enhancement-grid reveal">
+    <div class="enh-card">
+      <div class="enh-tag">Revenue Recognition</div>
+      <h4>Marketing Invoice Booking</h4>
+      <p>All marketing invoices are now booked in the <strong>same month the service is rendered</strong>, ensuring revenue and costs are matched in the correct period for accurate financial reporting.</p>
+      <div class="before-after">
+        <div class="ba-item">
+          <div class="ba-label before">Before</div>
+          <div class="ba-value">Booked in the following month after service</div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-label after">After</div>
+          <div class="ba-value">Booked in the same month service is rendered</div>
+        </div>
+      </div>
+    </div>
+    <div class="enh-card">
+      <div class="enh-tag">Tracking &amp; Recovery</div>
+      <h4>BO Number Integration</h4>
+      <p>All documents now include <strong>BO (Business Order) numbers</strong>, enabling agencies to accurately track obligations and process payments back to us on time &mdash; reducing follow-ups and delays.</p>
+      <div class="before-after">
+        <div class="ba-item">
+          <div class="ba-label before">Before</div>
+          <div class="ba-value">No BO reference &mdash; agencies struggled to match &amp; pay</div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-label after">After</div>
+          <div class="ba-value">BO numbers on all documents &mdash; faster agency payback</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">T-Mart Finance &middot; NMR IFRS 15 Compliance</div>
+  <div class="page-num">01 / 01</div>
+</section>
+
+<script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el) { revealObserver.observe(el); });
+})();
+</script>
+
+</body>
+</html>
