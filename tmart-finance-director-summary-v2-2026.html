@@ -57,15 +57,16 @@
   .page-tag {
     display: inline-block;
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--orange);
     background: var(--orange-dim);
     border: 1px solid rgba(255,89,0,0.15);
-    padding: 5px 16px;
+    padding: 6px 18px;
     border-radius: 4px;
     margin-bottom: 10px;
+    font-weight: 600;
   }
 
   .page-title {
@@ -116,12 +117,12 @@
   .kpi-val.brown { color: var(--brown); }
 
   .kpi-lbl {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-muted);
     margin-top: 3px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.4;
   }
 
@@ -146,11 +147,12 @@
 
   .card-tag {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--orange);
     margin-bottom: 4px;
+    font-weight: 600;
   }
 
   .card h4 {
@@ -270,11 +272,11 @@
   .growth-pill:hover { transform: translateY(-2px); }
 
   .growth-pill .pill-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 2px;
   }
 
@@ -371,11 +373,12 @@
 
   .dash-card .dash-tag {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--orange);
     margin-bottom: 4px;
+    font-weight: 600;
   }
 
   .dash-card h5 {
@@ -778,37 +781,54 @@
       <div class="big-zero" data-counter-target="0" data-counter-prefix="" data-counter-static="true" style="font-size:120px;">0</div>
       <div class="big-zero-text">
         <h3 style="font-size:36px;">NEW HIRES <span style="color:var(--orange);">ADDED</span></h3>
-        <p style="font-size:12px;">60% store growth, 50+ new suppliers, +50% purchases &mdash; same team.</p>
+        <p style="font-size:12px;">66% store growth, 100+ new suppliers, +50% purchases &mdash; same team.</p>
       </div>
     </div>
   </div>
 
   <!-- Growth Pills -->
-  <div class="growth-pills reveal" style="margin-bottom:14px;">
-    <div class="growth-pill">
+  <div style="margin-bottom:8px; text-align:center;" class="reveal">
+    <div class="page-tag" style="font-size:14px; letter-spacing:5px; font-weight:700; padding:8px 24px;">Year-on-Year &middot; 2025 &rarr; 2026</div>
+  </div>
+  <!-- Row 1: 4 tiles -->
+  <div class="reveal" style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:10px;">
+    <div class="growth-pill" style="min-width:0;">
       <div class="pill-label">Stores</div>
-      <div class="pill-nums">35 &rarr; 56</div>
-      <div class="pill-change" data-counter-target="60" data-counter-suffix="% &uarr;">+60% &uarr;</div>
+      <div class="pill-nums">35 &rarr; 58</div>
+      <div class="pill-change" data-counter-target="66" data-counter-suffix="% &uarr;">+66% &uarr;</div>
     </div>
-    <div class="growth-pill">
+    <div class="growth-pill" style="min-width:0;">
       <div class="pill-label">Suppliers</div>
       <div class="pill-nums">250+ &rarr; 350+</div>
       <div class="pill-change" data-counter-target="40" data-counter-suffix="% &uarr;">+40% &uarr;</div>
     </div>
-    <div class="growth-pill">
+    <div class="growth-pill" style="min-width:0;">
       <div class="pill-label">Purchase Volume</div>
       <div class="pill-nums" data-counter-target="50" data-counter-prefix="+" data-counter-suffix="%">+50%</div>
       <div class="pill-change">YoY Growth</div>
     </div>
-    <div class="growth-pill">
+    <div class="growth-pill" style="min-width:0;">
       <div class="pill-label">2026 Jan&ndash;Apr</div>
       <div class="pill-nums">AED <span data-counter-target="529" data-counter-suffix="M">529M</span></div>
       <div class="pill-change">Total Purchases</div>
     </div>
-    <div class="growth-pill zero-hire">
+  </div>
+  <!-- Row 2: 2 tiles + 1 enlarged zero-hire tile spanning 2 columns -->
+  <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr 2fr; gap:10px; margin-bottom:14px;">
+    <div class="growth-pill" style="min-width:0;">
+      <div class="pill-label">Purchase Orders</div>
+      <div class="pill-nums" style="font-size:22px;"><span data-counter-target="183" data-counter-suffix="K">183K</span></div>
+      <div class="pill-change">As of Apr 2026</div>
+    </div>
+    <div class="growth-pill" style="min-width:0;">
+      <div class="pill-label">Tax Credit Notes</div>
+      <div class="pill-nums" style="font-size:22px;"><span data-counter-target="65" data-counter-suffix="K">65K</span></div>
+      <div class="pill-change">As of Apr 2026</div>
+    </div>
+    <div class="growth-pill zero-hire" style="min-width:0;">
       <div class="pill-label">New Headcount</div>
-      <div class="pill-nums">ZERO</div>
-      <div class="pill-change">Unchanged &#10003;</div>
+      <div class="pill-nums" style="font-size:32px;">ZERO</div>
+      <div class="pill-change" style="font-size:14px;">Unchanged &#10003;</div>
     </div>
   </div>
 
@@ -826,8 +846,8 @@
           <div class="kpi-lbl">2026 Budget<br>Target</div>
         </div>
         <div class="kpi-cell" style="background:var(--brown);">
-          <div class="kpi-val lime" data-counter-target="734" data-counter-prefix="~">~734</div>
-          <div class="kpi-lbl" style="color:rgba(255,255,255,0.6);">2026 Kissflow<br>Projected</div>
+          <div class="kpi-val lime" data-counter-target="956">956</div>
+          <div class="kpi-lbl" style="color:rgba(255,255,255,0.6);">2026 Projected<br>Payments</div>
         </div>
       </div>
     </div>
@@ -874,7 +894,7 @@
 <!-- ════════════════════════════════════════════════════════ -->
 <!-- PAGE 2: AUTOMATION, AI & DASHBOARDS                    -->
 <!-- ════════════════════════════════════════════════════════ -->
-<section class="page" id="page-2">
+<section class="page" id="page-3">
   <div style="position:absolute;bottom:-60px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(255,89,0,0.05),transparent 70%);pointer-events:none;"></div>
 
   <!-- Header row -->
@@ -884,9 +904,7 @@
       <div class="page-title">AUTOMATION,<br><span>AI &amp; DASHBOARDS</span></div>
     </div>
     <div style="text-align:right; flex-shrink:0; margin-left:24px;">
-      <div style="font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--orange); line-height:0.85; text-shadow:0 3px 20px rgba(255,89,0,0.12);" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
-      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Saved Every Month</div>
-      <div style="margin-top:6px; display:flex; gap:6px; justify-content:flex-end;">
+      <div style="display:flex; gap:6px; justify-content:flex-end;">
         <span class="metric-pill orange">15+ Automations</span>
         <span class="metric-pill green">10 Dashboards</span>
       </div>
@@ -896,7 +914,7 @@
   <!-- Automations Grid — 2 rows x 4 cols -->
   <div class="card-grid reveal" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 12px;">
     <div class="card">
-      <div class="card-tag">New in 2026</div>
+      <div class="card-tag">New in 2026 &middot; Gemini AI</div>
       <h4>Invoice Matching</h4>
       <p>Auto-reads &amp; validates store PDF invoices. ~70% of all POS transactions automated.</p>
       <div class="metric-row">
@@ -905,9 +923,9 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-tag">Store Ops</div>
+      <div class="card-tag">Store Ops &middot; VBA Automation</div>
       <h4>TCN Tool</h4>
-      <p>Credit note tool across 56 stores. Supplier validation, duplicate blocking, tax compliance.</p>
+      <p>Credit note tool across 58 stores. Supplier validation, duplicate blocking, tax compliance.</p>
       <div class="metric-row">
         <span class="metric-pill orange">159K TCNs</span>
         <span class="metric-pill green">0 Errors</span>
@@ -918,11 +936,11 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-tag">Built In-House</div>
+      <div class="card-tag">Built In-House &middot; VBA Automation</div>
       <h4>Supplier Recon</h4>
       <p>Single tool replacing dozens of recon files. Auto-detects SOA formats, one-click matching.</p>
       <div class="metric-row">
-        <span class="metric-pill orange">300+ Formats</span>
+        <span class="metric-pill orange">350+ Formats</span>
         <span class="metric-pill green">1 Tool</span>
       </div>
     </div>
@@ -932,6 +950,9 @@
       <p>Supplier-level view with purchases, returns &amp; adjustments all in one place.</p>
       <div class="metric-row">
         <span class="metric-pill orange">3hrs &rarr; 20min</span>
+      </div>
+      <div class="metric-row" style="margin-top:6px;">
+        <a href="https://tableau.deliveryhero.net/#/site/GlobalStandardReporting/views/SRM-Rebates/SupplierLevelRebates?=null,,,,,,,,,,,,&:iid=1&:redirect=auth" target="_blank" class="tool-btn primary">&#9654; SRM Dashboard</a>
       </div>
     </div>
     <div class="card">
@@ -975,47 +996,62 @@
     <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
       <div class="page-tag" style="margin-bottom:0;">AI-Powered Dashboards &middot; 100% Team Adoption</div>
     </div>
-    <div class="dash-grid">
+    <!-- Row 1: 4 dashboards -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:10px;">
       <div class="dash-card">
         <div class="dash-tag">Operations</div>
         <h5>Shrinkage Dashboard</h5>
         <p>Loss patterns &amp; outlier flagging across all stores.</p>
+        <a href="https://mostafazeyada-commits.github.io/supplier-dashboard/shrinkage.html" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Purchase</div>
         <h5>PO Dashboard</h5>
         <p>Store-level purchasing trends &amp; daily movement.</p>
+        <a href="https://docs.google.com/spreadsheets/d/1LUKDIkGrRcz_hi40RdL8IaBchtg1BSxwlSASD8VjBEQ/edit?gid=1259438124#gid=1259438124" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Finance Ops</div>
         <h5>Invoice Match Performance</h5>
         <p>Real-time matching rates &amp; discrepancy flags.</p>
+        <a href="https://docs.google.com/spreadsheets/d/1LUKDIkGrRcz_hi40RdL8IaBchtg1BSxwlSASD8VjBEQ/edit?gid=671864157#gid=671864157" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Accounts Payable</div>
         <h5>Supplier Balances</h5>
         <p>Outstanding liabilities &amp; payment priorities.</p>
+        <a href="https://mostafazeyada-commits.github.io/supplier-dashboard/index.html" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
+    </div>
+    <!-- Row 2: 4 dashboards -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:10px;">
       <div class="dash-card">
         <div class="dash-tag">Treasury</div>
         <h5>Bank Transactions</h5>
         <p>Cash inflow, outflow &amp; net across all accounts.</p>
+        <a href="https://mostafazeyada-commits.github.io/supplier-dashboard/bank.html" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Leasing</div>
         <h5>Lease Breakdown</h5>
         <p>Monthly liability, cost breakdown &amp; contracts.</p>
+        <a href="https://mostafazeyada-commits.github.io/supplier-dashboard/lease.html" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Revenue</div>
         <h5>NMR &amp; Rebate</h5>
         <p>2026 NMR/rebate trends &amp; MoM comparisons.</p>
+        <a href="https://docs.google.com/spreadsheets/d/1Px4ZE3rwxvHUIKZsnIhHb0XQJGwxPn-oirFRdePu_Xs/edit?gid=0#gid=0" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
       <div class="dash-card">
         <div class="dash-tag">Stock</div>
         <h5>Inventory Movement</h5>
         <p>Movement trends &amp; MoM comparison across stores.</p>
+        <a href="https://docs.google.com/spreadsheets/d/1wtF4DBMVKEaWOo1wx9HqHJBPAz3iI-sgbV1OUlhlsQw/edit?gid=129344826#gid=129344826&fvid=765172388" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
+    </div>
+    <!-- Row 3: Expansion + Balance Sheet (same tile size) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
       <div class="dash-card">
         <div class="dash-tag">Expansion</div>
         <h5>Store Count</h5>
@@ -1025,6 +1061,7 @@
         <div class="dash-tag" style="color:var(--orange);">Finance</div>
         <h5>Balance Sheet &darr;</h5>
         <p>Interactive financial statements &mdash; see Page 3.</p>
+        <a href="Financial_Statements.html" target="_blank" class="tool-btn primary" style="font-size:8px;padding:2px 8px;margin-top:6px;">View &rarr;</a>
       </div>
     </div>
   </div>
@@ -1032,7 +1069,7 @@
   <!-- Savings Strip -->
   <div class="savings-strip reveal">
     <div>
-      <div class="total" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+      <div class="total" data-counter-target="155" data-counter-prefix="~" data-counter-suffix="h">~155h</div>
       <div class="total-label">Saved Monthly</div>
     </div>
     <div class="savings-items">
@@ -1049,7 +1086,7 @@
         <div class="lbl">Rebate SRM</div>
       </div>
       <div class="savings-item">
-        <div class="val" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</div>
+        <div class="val" data-counter-target="32" data-counter-prefix="~" data-counter-suffix="h">~32h</div>
         <div class="lbl">Supplier Recon</div>
       </div>
       <div class="savings-item">
@@ -1113,9 +1150,9 @@
         <div class="page-title" style="font-size:clamp(52px,6.5vw,82px);">TIME IS THE<br><span>NEW CURRENCY</span></div>
       </div>
       <div style="text-align:right;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:80px; color:var(--orange); line-height:0.85; text-shadow:0 4px 30px rgba(255,89,0,0.15);" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:80px; color:var(--orange); line-height:0.85; text-shadow:0 4px 30px rgba(255,89,0,0.15);" data-counter-target="155" data-counter-prefix="~" data-counter-suffix="h">~155h</div>
         <div style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:500;">Reclaimed Every Month</div>
-        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">That&rsquo;s <strong style="color:var(--orange); font-size:14px;">3+ weeks</strong> of full-time work &mdash; redirected to analysis &amp; strategy</div>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">That&rsquo;s <strong style="color:var(--orange); font-size:14px;">nearly 4 weeks</strong> of full-time work &mdash; redirected to analysis &amp; strategy</div>
       </div>
     </div>
   </div>
@@ -1128,7 +1165,7 @@
           <th style="width:22%;">Before</th>
           <th style="width:22%;">After</th>
           <th style="width:18%;">Impact</th>
-          <th style="width:16%; text-align:center;">Hours Saved</th>
+          <th style="width:16%; text-align:center;">Hours Saved / Month</th>
         </tr>
       </thead>
       <tbody>
@@ -1157,8 +1194,8 @@
           <td><strong>Supplier Recon</strong></td>
           <td class="before-col">1 file per supplier</td>
           <td class="after-col">1 tool, all suppliers</td>
-          <td>300+ SOA formats</td>
-          <td class="hours-col" data-counter-target="8" data-counter-prefix="~" data-counter-suffix="h">~8h</td>
+          <td>350+ SOA formats</td>
+          <td class="hours-col" data-counter-target="32" data-counter-prefix="~" data-counter-suffix="h">~32h</td>
         </tr>
         <tr>
           <td><strong>Pending GRV</strong></td>
@@ -1185,7 +1222,7 @@
       <tfoot>
         <tr>
           <td colspan="4" style="font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px;">Total Monthly Time Reclaimed</td>
-          <td class="hours-col" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h" style="text-align:center;">~130h</td>
+          <td class="hours-col" data-counter-target="155" data-counter-prefix="~" data-counter-suffix="h" style="text-align:center;">~155h</td>
         </tr>
       </tfoot>
     </table>
@@ -1228,7 +1265,7 @@
       <div class="emp-card">
         <div style="font-size:24px; color:var(--orange); margin-bottom:8px;">&#9670;</div>
         <h4>Growth Through Challenge</h4>
-        <p>70% business growth absorbed with zero hires &mdash; scaling by capability, not headcount.</p>
+        <p>66% store growth absorbed with zero hires &mdash; scaling by capability, not headcount.</p>
       </div>
     </div>
   </div>
@@ -1249,7 +1286,7 @@
         <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">Dashboards</div>
       </div>
       <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--orange); line-height:1;" data-counter-target="130" data-counter-prefix="~" data-counter-suffix="h">~130h</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--orange); line-height:1;" data-counter-target="155" data-counter-prefix="~" data-counter-suffix="h">~155h</div>
         <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:4px;">Saved Monthly</div>
       </div>
       <div style="background:var(--brown); border-radius:8px; padding:20px; text-align:center;">
